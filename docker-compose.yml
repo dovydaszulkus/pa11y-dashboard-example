@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  database:
+    image: mongo:4.4
+    volumes:
+      - mongo-volume:/pa11ydata
+    restart: always
+  web:
+    depends_on:
+      - database
+    build: .
+    ports:
+      - "80:4000"
+    restart: always
+volumes:
+  mongo-volume:
